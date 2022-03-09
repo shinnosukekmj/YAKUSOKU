@@ -1,0 +1,2 @@
+module Smoke::VoicesHelper
+end

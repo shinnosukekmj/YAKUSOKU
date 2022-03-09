@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div>
+    <h1>禁煙<h1>
+  </div>
+
+  <div>
+    <h5><%=link_to 'トップ',root_path%></h5>
+    <h5><%=link_to 'ログアウト',destroy_smoke_session_path,method: :delete%></h5>
+  </div>
+
+  <div>
+    <h3>禁煙日記</h3>
+      <%= form_with model: @voise,url: smoke_voises_path,method: :post do |f| %>
+        <h5>内容</h5>
+          <%= f.text_area :story %>
+        <%= f.submit '投稿' %>
+      <% end %>
+  </div>
+
+  <div>
+    <h3>みんなの禁煙日記</h3>
+      <% @voises.each do |voise| %>
+        <div class="border border-dark mt-1">
+          <p><%= voise.story %></p>
+          <p><%= voise.smoke.name %>さん</p>
+          <% if voise.smoke == current_smoke %>
+            <%= link_to "削除", smoke_voise_path(voise), method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+
+</div>
